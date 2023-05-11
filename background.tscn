@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://cin4phkoe23m1"]
+
+[ext_resource type="Texture2D" uid="uid://sseiul0gux44" path="res://3 nebula.png" id="2_20lqj"]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_offset = Vector2(-512, 0)
+motion_mirroring = Vector2(0, 6144)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+scale = Vector2(2, 2)
+texture = ExtResource("2_20lqj")
+centered = false

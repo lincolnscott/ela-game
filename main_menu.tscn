@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1h6p84nrphfn"]
+
+[ext_resource type="Texture2D" uid="uid://bjyicgp7e1eu8" path="res://Textures/Space/Purple/0.png" id="1_7avrv"]
+[ext_resource type="Script" path="res://scripts/ChangeScene.gd" id="2_f0qjb"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6hvb2"]
+resource_name = "Purple"
+texture = ExtResource("1_7avrv")
+texture_region_size = Vector2i(1024, 1024)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_htncf"]
+tile_size = Vector2i(1024, 1024)
+sources/0 = SubResource("TileSetAtlasSource_6hvb2")
+
+[node name="Main Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_htncf")
+cell_quadrant_size = 128
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 0, 0, 65536, 0, 0, 1, 0, 0, 65537, 0, 0, -1, 0, 0, 65535, 0, 0, 131071, 0, 0, 196607, 0, 0, -65536, 0, 0, 131072, 0, 0, -65535, 0, 0, 131073, 0, 0, -65534, 0, 0, 2, 0, 0, 65538, 0, 0, 131074, 0, 0)
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 88.0
+offset_top = 280.0
+offset_right = 195.0
+offset_bottom = 311.0
+scale = Vector2(9.36, 9.36)
+text = "PRESS START"
+script = ExtResource("2_f0qjb")
+
+[connection signal="button_down" from="Button" to="Button" method="_on_button_down"]

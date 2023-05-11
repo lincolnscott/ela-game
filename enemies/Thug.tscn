@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://djhan7q2ykniv"]
+
+[ext_resource type="Script" path="res://enemies/Thug.gd" id="1_3bf6d"]
+[ext_resource type="Texture2D" uid="uid://45sdmn5wafon" path="res://Textures/devil.png" id="2_ceqr3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4bt63"]
+size = Vector2(128, 128)
+
+[node name="Thug" type="Area2D"]
+script = ExtResource("1_3bf6d")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4bt63")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.06667, 1.06667)
+texture = ExtResource("2_ceqr3")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

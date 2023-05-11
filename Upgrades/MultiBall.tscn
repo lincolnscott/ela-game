@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cet13siy0r4q4"]
+
+[ext_resource type="Texture2D" uid="uid://db16rjhcifbjk" path="res://Textures/multiball.png" id="1_i3282"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dajwk"]
+size = Vector2(128, 160)
+
+[node name="MultiBall" type="Area2D"]
+collision_layer = 2
+
+[node name="Multiball" type="Sprite2D" parent="."]
+texture = ExtResource("1_i3282")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dajwk")

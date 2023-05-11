@@ -1,0 +1,68 @@
+[gd_scene load_steps=10 format=3 uid="uid://bsgw01w0qephv"]
+
+[ext_resource type="Script" path="res://scripts/SceneManager.gd" id="1_2qsue"]
+[ext_resource type="PackedScene" uid="uid://bexjjw1cmijol" path="res://player.tscn" id="1_p63b3"]
+[ext_resource type="Texture2D" uid="uid://cn4n6lknqjnq4" path="res://angry.webp" id="3_j836c"]
+[ext_resource type="Script" path="res://scripts/AreaDelete.gd" id="3_srnj2"]
+[ext_resource type="Script" path="res://scripts/cam.gd" id="5_vby5a"]
+[ext_resource type="Script" path="res://scripts/enemies_group.gd" id="6_2w2q2"]
+[ext_resource type="PackedScene" uid="uid://q0db88ijntoj" path="res://Upgrades/upgrade_manager.tscn" id="7_xi4k0"]
+[ext_resource type="PackedScene" uid="uid://cin4phkoe23m1" path="res://background.tscn" id="8_jro5r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c2pc6"]
+size = Vector2(1216, 26)
+
+[node name="Node" type="Node"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Main" type="Node2D" parent="CanvasLayer"]
+script = ExtResource("1_2qsue")
+
+[node name="Player" parent="CanvasLayer/Main" instance=ExtResource("1_p63b3")]
+z_index = 7
+
+[node name="KillBullets" type="Area2D" parent="CanvasLayer/Main"]
+position = Vector2(-1500, 0)
+scale = Vector2(4, 1.834)
+script = ExtResource("3_srnj2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Main/KillBullets"]
+position = Vector2(544, -48)
+shape = SubResource("RectangleShape2D_c2pc6")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Main/KillBullets"]
+position = Vector2(548, -80)
+scale = Vector2(2.65, 0.2)
+texture = ExtResource("3_j836c")
+
+[node name="Camera2D" type="Camera2D" parent="CanvasLayer/Main"]
+position = Vector2(585, 1266)
+script = ExtResource("5_vby5a")
+
+[node name="enemies" type="Node2D" parent="CanvasLayer/Main"]
+script = ExtResource("6_2w2q2")
+
+[node name="UpgradeManager" parent="CanvasLayer/Main" instance=ExtResource("7_xi4k0")]
+z_index = -1
+speed = 8.5
+
+[node name="KillUpgrades" type="Area2D" parent="CanvasLayer/Main"]
+position = Vector2(-1500, 0)
+scale = Vector2(4, 1.834)
+collision_layer = 2
+script = ExtResource("3_srnj2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CanvasLayer/Main/KillUpgrades"]
+position = Vector2(544, -48)
+shape = SubResource("RectangleShape2D_c2pc6")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/Main/KillUpgrades"]
+position = Vector2(548, -80)
+scale = Vector2(2.65, 0.2)
+texture = ExtResource("3_j836c")
+
+[node name="ParallaxBackground" parent="." instance=ExtResource("8_jro5r")]
+
+[connection signal="area_entered" from="CanvasLayer/Main/KillBullets" to="CanvasLayer/Main/KillBullets" method="_on_area_entered"]
+[connection signal="area_entered" from="CanvasLayer/Main/KillUpgrades" to="CanvasLayer/Main/KillUpgrades" method="_on_area_entered"]
